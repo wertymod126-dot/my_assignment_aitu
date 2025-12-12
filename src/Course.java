@@ -21,5 +21,6 @@ public class Course {
         this.courseDepartment = courseDepartment;
         this.professor = professor;
     }
+    // k
 
 }
