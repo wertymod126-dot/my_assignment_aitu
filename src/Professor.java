@@ -80,7 +80,7 @@ public class Professor {
     }
 
     public void displayProfessorInfo() {
-        System.out.println("Professor Info:");
+        System.out.println("========Professor Info========");
         System.out.println("ID: " + professorID);
         System.out.println("Professor Name: " + professorName);
         System.out.println("Professor Qualification: " + professorQualification);
@@ -91,12 +91,13 @@ public class Professor {
 
             for (int i = 0; i < coursesTaught.size() ; i++) {
                 Course course = coursesTaught.get(i);
-                System.out.println(" " + (i + 1) + "-" + course + "-" + course.getCourseCode() + "-" + course.getCourseName() + "( " + course.getCredits() + " credits)");
+                System.out.println(" " + (i + 1) + "." + course.getCourseCode() + "-" + course.getCourseName() + "( " + course.getCredits() + " credits)");
             }
         }
         else {
             System.out.println("No courses");
         }
+        System.out.println("=============================");
     }
 
 

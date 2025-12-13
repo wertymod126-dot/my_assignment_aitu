@@ -2,21 +2,21 @@ import java.lang.classfile.constantpool.ConstantPool;
 
 public class Course {
 
-    private int courseCode;
+    private String courseCode;
     private String courseName;
     private int credits;
     private String courseDepartment;
     private Professor professor;
 
     public Course() {
-        this.courseCode = 0;
+        this.courseCode = "";
         this.courseName = "";
         this.credits = 0;
         this.courseDepartment = "";
         this.professor = null;
     }
 
-    public Course(int courseCode, String courseName, int credits, String courseDepartment, String professor) {
+    public Course(String courseCode, String courseName, int credits, String courseDepartment, String professor) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.credits = credits;
@@ -24,10 +24,10 @@ public class Course {
         this.professor = null;
     }
 
-    public int getCourseCode() {
+    public String getCourseCode() {
         return courseCode;
     }
-    public void setCourseCode(int code) {
+    public void setCourseCode(String code) {
         courseCode = code;
     }
 
@@ -46,6 +46,13 @@ public class Course {
     public void setCredits(int credits) {
         this.credits = credits;
     }
+    public String getCourseDepartment() {
+        return courseDepartment;
+    }
+
+    public void setCourseDepartment(String courseDepartment) {
+        this.courseDepartment = courseDepartment;
+    }
 
     public Professor getProfessor() {
         return professor;
@@ -55,6 +62,10 @@ public class Course {
         if (professor != null) {
             this.professor = professor;
         }
+    }
+
+    public void displayCourseInfo() {
+        System.out.println(courseCode + "-" + courseName + "-" + courseDepartment + "-" + "(" + credits + " credits)");
     }
 
 }
