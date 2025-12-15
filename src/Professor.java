@@ -17,11 +17,11 @@ public class Professor {
         this.coursesTaught = new ArrayList<>();
     }
 
-    public Professor(int professorID,String professorName,String professorQualification,int professorYearsOfExp) {
+    public Professor(int professorID, String professorName, String professorQualification, int professorYearsOfExp) {
         this.professorID = professorID;
         this.professorName = professorName;
         this.professorQualification = professorQualification;
-        this.professorYearsOfExp =  professorYearsOfExp;
+        this.professorYearsOfExp = professorYearsOfExp;
         this.coursesTaught = new ArrayList<>();
     }
 
@@ -79,6 +79,12 @@ public class Professor {
         }
     }
 
+    @Override
+    public String toString() {
+        return professorName + " (ID: " + professorID +
+                ", Experience: " + professorYearsOfExp + " years)";
+    }
+
     public void displayProfessorInfo() {
         System.out.println("========Professor Info========");
         System.out.println("ID: " + professorID);
@@ -89,21 +95,15 @@ public class Professor {
             System.out.println("Number of courses teaching: " + coursesTaught.size());
             System.out.println("Courses Taught: ");
 
-            for (int i = 0; i < coursesTaught.size() ; i++) {
+            for (int i = 0; i < coursesTaught.size(); i++) {
                 Course course = coursesTaught.get(i);
                 System.out.println(" " + (i + 1) + "." + course.getCourseCode() + "-" + course.getCourseName() + "( " + course.getCredits() + " credits)");
             }
-        }
-        else {
+        } else {
             System.out.println("No courses");
         }
         System.out.println("=============================");
     }
 
-
-
-
-
-
-
 }
+

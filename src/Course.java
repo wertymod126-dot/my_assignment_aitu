@@ -1,5 +1,3 @@
-import java.lang.classfile.constantpool.ConstantPool;
-
 public class Course {
 
     private String courseCode;
@@ -16,7 +14,7 @@ public class Course {
         this.professor = null;
     }
 
-    public Course(String courseCode, String courseName, int credits, String courseDepartment, String professor) {
+    public Course(String courseCode, String courseName, int credits, String courseDepartment, Professor professor) {
         this.courseCode = courseCode;
         this.courseName = courseName;
         this.credits = credits;
@@ -27,6 +25,7 @@ public class Course {
     public String getCourseCode() {
         return courseCode;
     }
+
     public void setCourseCode(String code) {
         courseCode = code;
     }
@@ -64,8 +63,30 @@ public class Course {
         }
     }
 
+    @Override
+    public String toString() {
+        return courseCode + ": " + courseName + " [" + courseDepartment +
+                ", " + credits + " credits]";
+    }
+
     public void displayCourseInfo() {
-        System.out.println(courseCode + "-" + courseName + "-" + courseDepartment + "-" + "(" + credits + " credits)");
+        System.out.println("=== COURSE INFORMATION ===");
+        System.out.println("Code: " + courseCode);
+        System.out.println("Name: " + courseName);
+        System.out.println("Credits: " + credits);
+        System.out.println("Department: " + courseDepartment);
+        if (professor != null) {
+            System.out.println("Professor: " + professor.getProfessorName());
+        } else {
+            System.out.println("Professor: Not assigned");
+        }
+        System.out.println("==========================");
+    }
+
+    public void displayBriefInfo() {
+        System.out.println(courseCode + " - " + courseName +
+                " (" + courseDepartment + ") - " +
+                credits + " credits");
     }
 
 }
