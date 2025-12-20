@@ -45,6 +45,7 @@ public class Course {
     public void setCredits(int credits) {
         this.credits = credits;
     }
+
     public String getCourseDepartment() {
         return courseDepartment;
     }
