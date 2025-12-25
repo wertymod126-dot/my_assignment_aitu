@@ -38,7 +38,7 @@ public class University {
 
     public List<Course> findCourseByDepartment(String department) {
         return courses.stream()
-                .filter(course -> course.getCourseDepartment().equalsIgnoreCase(department))
+                .filter(course -> course.getDepartment().equalsIgnoreCase(department))
                 .collect(Collectors.toList());
     }
 
@@ -74,7 +74,7 @@ public class University {
 
     public Map<String, Long> getCoursesByDepartment() {
          return courses.stream()
-                 .collect(Collectors.groupingBy(Course::getCourseDepartment, Collectors.counting()));
+                 .collect(Collectors.groupingBy(Course::getDepartment, Collectors.counting()));
     }
 
     public double getAverageProfessorExperience() {
