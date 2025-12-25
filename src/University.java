@@ -84,7 +84,7 @@ public class University {
                 .orElse(0.0);
     }
 
-    public int getTotalInrollment() {
+    public int getTotalEnrollment() {
         return courses.stream()
                 .mapToInt(courses -> courses.getEnrolledStudents().size())
                 .sum();
@@ -203,7 +203,7 @@ public class University {
         System.out.println("Total Professors: " + professors.size());
         System.out.println("Total Students: " + students.size());
         System.out.println("Average Professor Experience: " + getAverageProfessorExperience());
-        System.out.println("Total Enrollment: " + getTotalEnrollment());
+        System.out.println("Total Enrollment: " +  getTotalEnrollment());
 
         System.out.println("\nCourses by Department:");
         getCoursesByDepartment().forEach((dept, count) ->
