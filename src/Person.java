@@ -30,5 +30,10 @@ public abstract class Person {
         return name + "(ID: " + id + " )";
     }
 
+    public int hashCode() {
+        return id;
+    }
+
+
 
 }

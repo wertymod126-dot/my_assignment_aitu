@@ -77,7 +77,7 @@ public class Course {
         System.out.println("Credits: " + credits);
         System.out.println("Department: " + courseDepartment);
         if (professor != null) {
-            System.out.println("Professor: " + professor.getProfessorName());
+            System.out.println("Professor: " + professor.getName());
         } else {
             System.out.println("Professor: Not assigned");
         }

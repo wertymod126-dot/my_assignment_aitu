@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class University {
     private String name;
@@ -7,14 +10,7 @@ public class University {
     private int foundedYear;
     private List<Course> courses;
     private List<Professor> professors;
-
-    public University() {
-        this.name = "";
-        this.location = "";
-        this.foundedYear = 0;
-        this.courses = new ArrayList<>();
-        this.professors = new ArrayList<>();
-    }
+    private List<Student> students;
 
     public University(String name, String location, int foundedYear) {
         this.name = name;
@@ -22,40 +18,116 @@ public class University {
         this.foundedYear = foundedYear;
         this.courses = new ArrayList<>();
         this.professors = new ArrayList<>();
+        this.students = new ArrayList<>();
     }
 
-    public String getName() {
-        return name;
+    // SEARCHING METHOD
+    public Course findCourseByCode(String code) {
+        return courses.stream()
+                .filter(course -> course.getCourseCode().equalsIgnoreCase(code))
+                .findFirst()
+                .orElse(null);
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public Professor findProfessorByName(String name) {
+        return professors.stream()
+                .filter(professor -> professor.getName().equalsIgnoreCase(name))
+                .findFirst()
+                .orElse(null);
     }
 
-    public String getLocation() {
-        return location;
+    public List<Course> findCourseByDepartment(String department) {
+        return courses.stream()
+                .filter(course -> course.getCourseDepartment().equalsIgnoreCase(department))
+                .collect(Collectors.toList());
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    // filtering methods
+
+    public List<Professor> filterProfessorsByExperience(int minYears) {
+        return professors.stream()
+                .filter(professor -> professor.getYearsOfExp() >= minYears)
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    public int getFoundedYear() {
-        return foundedYear;
+    public List<Course> filterCoursesByCredits(int minCredits, int maxCredits) {
+        return courses.stream()
+                .filter(course -> course.getCredits() >= minCredits && course.getCredits() <= maxCredits)
+                .collect(Collectors.toUnmodifiableList());
     }
 
-    public void setFoundedYear(int foundedYear) {
-        this.foundedYear = foundedYear;
+    // sort method
+
+    public void sortProfessorsByExperience() {
+        professors.sort(Comparator.comparingInt(Professor::getYearsOfExp).reversed());
     }
 
-    public List<Course> getCourses() {
-        return courses;
+    public void sortCoursesByName() {
+        courses.sort(Comparator.comparing(Course::getCourseName));
     }
 
-    public List<Professor> getProfessors() {
-        return professors;
+    public void sortCoursesByCredits() {
+        courses.sort(Comparator.comparingInt(Course::getCredits).reversed());
     }
 
+    // statistical
+
+    public Map<String, Long> getCoursesByDepartment() {
+         return courses.stream()
+                 .collect(Collectors.groupingBy(Course::getCourseDepartment, Collectors.counting()));
+    }
+
+    public double getAverageProfessorExperience() {
+        return professors.stream()
+                .mapToInt(Professor::getYearsOfExp)
+                .average()
+                .orElse(0.0);
+    }
+
+    public int getTotalInrollment() {
+        return courses.stream()
+                .mapToInt(courses -> courses.getEnrolledStudents().size())
+                .sum();
+    }
+
+
+
+
+
+//    public String getName() {
+//        return name;
+//    }
+//
+//    public void setName(String name) {
+//        this.name = name;
+//    }
+//
+//    public String getLocation() {
+//        return location;
+//    }
+//
+//    public void setLocation(String location) {
+//        this.location = location;
+//    }
+//
+//    public int getFoundedYear() {
+//        return foundedYear;
+//    }
+//
+//    public void setFoundedYear(int foundedYear) {
+//        this.foundedYear = foundedYear;
+//    }
+//
+//    public List<Course> getCourses() {
+//        return courses;
+//    }
+//
+//    public List<Professor> getProfessors() {
+//        return professors;
+//    }
+    // inactive
+
+   // managing datapool
     public void addCourse(Course course) {
         if (course != null && !courses.contains(course)) {
             courses.add(course);
@@ -68,6 +140,12 @@ public class University {
         }
     }
 
+    public void addStudent(Student student) {
+        if (student != null && !students.contains(student)) {
+            students.add(student);
+        }
+    }
+
     public void removeCourse(Course course) {
         courses.remove(course);
     }
@@ -76,19 +154,14 @@ public class University {
         professors.remove(professor);
     }
 
-    public double getAverageProfessorExp() {
-        if (professors.isEmpty()) {
-            return 0.0;
-        }
-        else {
-            int totalexp = 0;
-            for (Professor professor : professors) {
-                totalexp += professor.getProfessorYearsOfExp();
-            }
-            return (double) totalexp / professors.size();
-
-        }
+    public void removeStudent(Student student) {
+        students.remove(student);
     }
+
+
+
+
+    // display methods
 
     public void displayUniversityInfo() {
         System.out.println("=== UNIVERSITY INFORMATION ===");
@@ -118,10 +191,28 @@ public class University {
             System.out.println("No professors available.");
         } else {
             for (Professor professor : professors) {
-                professor.displayProfessorInfo();
+                professor.displayInfo();
                 System.out.println();
             }
         }
     }
+
+    public void displayStatistics() {
+        System.out.println("\n=== UNIVERSITY STATISTICS ===");
+        System.out.println("Total Courses: " + courses.size());
+        System.out.println("Total Professors: " + professors.size());
+        System.out.println("Total Students: " + students.size());
+        System.out.println("Average Professor Experience: " + getAverageProfessorExperience());
+        System.out.println("Total Enrollment: " + getTotalEnrollment());
+
+        System.out.println("\nCourses by Department:");
+        getCoursesByDepartment().forEach((dept, count) ->
+                System.out.println("  " + dept + ": " + count + " courses"));
+    }
+
+    //getters
+    public List<Course> getCourses() { return courses; }
+    public List<Professor> getProfessors() { return professors; }
+    public List<Student> getStudents() { return students; }
 
 }

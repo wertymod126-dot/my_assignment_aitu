@@ -1,109 +1,73 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
-public class Professor {
+public class Professor extends Person {
 
-    private int professorID;
-    private String professorName;
-    private String professorQualification;
-    private int professorYearsOfExp;
+    private String qualification;
+    private int yearsOfExp;
     private List<Course> coursesTaught;
+    private String department;
 
-    public Professor() {
-        this.professorID = 0;
-        this.professorName = "";
-        this.professorQualification = "";
-        this.professorYearsOfExp = 0;
+
+
+    public Professor(int id, String name, String qualification,
+                     int yearsOfExperience, String department) {
+        super(id, name);
+        this.qualification = qualification;
+        this.department = department;
+        this.yearsOfExp = yearsOfExp;
         this.coursesTaught = new ArrayList<>();
     }
 
-    public Professor(int professorID, String professorName, String professorQualification, int professorYearsOfExp) {
-        this.professorID = professorID;
-        this.professorName = professorName;
-        this.professorQualification = professorQualification;
-        this.professorYearsOfExp = professorYearsOfExp;
-        this.coursesTaught = new ArrayList<>();
+    //getters setters
+    public String getQualification() { return qualification; }
+    public void setQualification(String qualification) { this.qualification = qualification; }
+    public int getYearsOfExp() { return yearsOfExp; }
+    public void setYearsOfExp(int yearsOfExp) { this.yearsOfExp = yearsOfExp; }
+    public String getDepartment() { return department; }
+    public void setDepartment(String department) { this.department = department; }
+    public List<Course> getCoursesTaught() { return coursesTaught; }
+
+    // implementing method from person abstract class
+    @Override
+    public void displayInfo() {
+        System.out.println("Professor: " + name + " (" + qualification + ")");
+        System.out.println("Experience: " + yearsOfExp + " Years");
+        System.out.println("Department: " + department);
     }
 
-    public int getProfessorID() {
-        return professorID;
+    // Methods
+    public boolean teachesCourse(String courseCode) {
+        return coursesTaught.stream()
+                .anyMatch(course -> course.getCourseCode().equals(courseCode));
     }
 
-    public void setProfessorID(int professorID) {
-        this.professorID = professorID;
+    public void sortCoursesByName() {
+        coursesTaught.sort(Comparator.comparing(Course::getCourseName));
     }
 
-    public String getProfessorName() {
-        return professorName;
+    public void sortCoursesByCredits() {
+        coursesTaught.sort(Comparator.comparing(Course::getCredits).reversed());
     }
 
-    public void setProfessorName(String professorName) {
-        this.professorName = professorName;
+    //Filtering
+    public List<Course> getCoursesWithCredits(int minCredits) {
+        return coursesTaught.stream()
+                .filter(course -> course.getCredits() >= minCredits)
+                .collect(Collectors.toList());
     }
 
-    public String getProfessorQualification() {
-        return professorQualification;
-    }
 
-    public void setProfessorQualification(String professorQualification) {
-        this.professorQualification = professorQualification;
-    }
 
-    public int getProfessorYearsOfExp() {
-        return professorYearsOfExp;
-    }
-
-    public void setProfessorYearsOfExp(int professorYearsOfExp) {
-        this.professorYearsOfExp = professorYearsOfExp;
-    }
-
-    public List<Course> getCoursesTaught() {
-        return coursesTaught;
-    }
-
-    public void addCourse(Course course) {
-        if (course != null && !coursesTaught.contains(course)) {
-            coursesTaught.add(course);
-            if (course.getProfessor() != this) {
-                course.setProfessor(this);
-            }
-        }
-    }
-
-    public void removeCourse(Course course) {
-        if (course != null && coursesTaught.contains(course)) {
-            coursesTaught.remove(course);
-            if (course.getProfessor() == this) {
-                course.setProfessor(null);
-            }
-        }
-    }
 
     @Override
     public String toString() {
-        return professorName + " (ID: " + professorID +
-                ", Experience: " + professorYearsOfExp + " years)";
+        return super.toString() + " - " + qualification + " (" + yearsOfExp + " years exp)";
     }
 
-    public void displayProfessorInfo() {
-        System.out.println("========Professor Info========");
-        System.out.println("ID: " + professorID);
-        System.out.println("Professor Name: " + professorName);
-        System.out.println("Professor Qualification: " + professorQualification);
-        System.out.println("Years of experience: " + professorYearsOfExp);
-        if (coursesTaught != null && !coursesTaught.isEmpty()) {
-            System.out.println("Number of courses teaching: " + coursesTaught.size());
-            System.out.println("Courses Taught: ");
 
-            for (int i = 0; i < coursesTaught.size(); i++) {
-                Course course = coursesTaught.get(i);
-                System.out.println(" " + (i + 1) + "." + course.getCourseCode() + "-" + course.getCourseName() + "( " + course.getCredits() + " credits)");
-            }
-        } else {
-            System.out.println("No courses");
-        }
-        System.out.println("=============================");
-    }
 
 }
 
