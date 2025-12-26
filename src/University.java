@@ -90,6 +90,21 @@ public class University {
                 .sum();
     }
 
+    // demonstrations
+
+    public void displayAllPersons() {
+        System.out.println("----DISPLAYING ALL PERSONS----");
+
+        List<Person> allPersons = new ArrayList<>();
+        allPersons.addAll(students);
+        allPersons.addAll(professors);
+        for (Person person : allPersons) {
+            person.displayInfo();
+            System.out.println("---");
+        }
+
+    }
+
 
 
 
