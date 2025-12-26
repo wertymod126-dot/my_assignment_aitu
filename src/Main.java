@@ -88,7 +88,47 @@ public class Main {
         se201.displayDetailedInfo();
         math101.displayBriefInfo();
 
+        // test tostring
+        System.out.println("\n6. toString(), equals(), hashCode() DEMONSTRATION:");
+        System.out.println("toString() output: " + prof1);
+        System.out.println("toString() output: " + se201);
+
         // testing equals
+
+        Course se201Copy = new Course("SE201", "Object-Oriented Programming", 5, "Software Engineering");
+        System.out.println("\nEquals test - se201.equals(se201Copy): " + se201.equals(se201Copy));
+        System.out.println("HashCode se201: " + se201.hashCode());
+        System.out.println("HashCode se201Copy: " + se201Copy.hashCode());
+
+        System.out.println("\nTesting equals with prof 1 and prof2: " + prof1.equals(prof2));
+
+
+        //encapsulation
+        System.out.println("\n----ENCAPSULATION DEMONSTRATION----");
+        System.out.println("Accessing private fields through getters:");
+        System.out.println("Professor 1 Name: " + prof1.getName());
+        System.out.println("Course SE201 Credits: " + se201.getCredits());
+
+        prof1.setYearsOfExp(11);
+        System.out.println("Updated Professor 1 Experience: " + prof1.getYearsOfExp());
+
+        //display
+        System.out.println("\n---UNIVERSITY STATISTICS----");
+        university.displayStatistics();
+
+        //inheritance test
+        System.out.println("\n----TESTING INHERITANCE----");
+        System.out.println("Professor is a person: " + (prof1 instanceof Person));
+        System.out.println("Student is a person: " + (student1 instanceof Person));
+
+        //person ref test polymorphism
+
+        Person personRef = prof1;
+        System.out.println("Person reference calling getName(): " + personRef.getName());
+        personRef.displayInfo();
+
+        personRef = student2;
+        personRef.displayInfo();
 
 
 
