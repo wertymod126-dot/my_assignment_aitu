@@ -86,7 +86,7 @@ public class University {
 
     public int getTotalEnrollment() {
         return courses.stream()
-                .mapToInt(courses -> courses.getEnrolledStudents().size())
+                .mapToInt(course -> course.getEnrolledStudents().size())
                 .sum();
     }
 
@@ -195,7 +195,7 @@ public class University {
         } else {
             for (int i = 0; i < courses.size(); i++) {
                 System.out.print((i + 1) + ". ");
-                courses.get(i).displayCourseInfo();
+                courses.get(i).displayBriefInfo();
             }
         }
     }

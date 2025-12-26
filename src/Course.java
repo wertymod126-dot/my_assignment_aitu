@@ -58,8 +58,8 @@ public class Course implements Displayable {
     }
 
     //
-
-    public String ToString() {
+    @Override
+    public String toString() {
         return courseCode + ": " + courseName + " [" + department + ", " + credits + " credits]";
     }
 
@@ -94,19 +94,19 @@ public class Course implements Displayable {
 
 
 
-    public void displayCourseInfo() {
-        System.out.println("=== COURSE INFORMATION ===");
-        System.out.println("Code: " + courseCode);
-        System.out.println("Name: " + courseName);
-        System.out.println("Credits: " + credits);
-        System.out.println("Department: " + department);
-        if (professor != null) {
-            System.out.println("Professor: " + professor.getName());
-        } else {
-            System.out.println("Professor: Not assigned");
-        }
-        System.out.println("==========================");
-    }
+//    public void displayCourseInfo() {
+//        System.out.println("=== COURSE INFORMATION ===");
+//        System.out.println("Code: " + courseCode);
+//        System.out.println("Name: " + courseName);
+//        System.out.println("Credits: " + credits);
+//        System.out.println("Department: " + department);
+//        if (professor != null) {
+//            System.out.println("Professor: " + professor.getName());
+//        } else {
+//            System.out.println("Professor: Not assigned");
+//        }
+//        System.out.println("==========================");
+//    }
 
 
 

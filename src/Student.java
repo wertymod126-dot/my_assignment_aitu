@@ -25,7 +25,7 @@ public class Student extends Person {
     }
 
     public void enrollCourse(Course course) {
-        if (!enrolledCourses.contains(enrolledCourses)) {
+        if (!enrolledCourses.contains(course)) {
             enrolledCourses.add(course);
             System.out.println(name + " is now enrolled in " + course.getCourseName());
         }

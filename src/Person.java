@@ -26,7 +26,7 @@ public abstract class Person {
     }
 
 
-    public String ToString() {
+    public String toString() {
         return name + "(ID: " + id + " )";
     }
 
