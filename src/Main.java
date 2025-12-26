@@ -52,7 +52,7 @@ public class Main {
 
        //
         // polumorphism
-        System.out.println("--POLYMORPHISM TEST--");
+        System.out.println("\n--POLYMORPHISM TEST--");
         university.displayAllPersons();
 
         // searching
@@ -124,7 +124,7 @@ public class Main {
         //person ref test polymorphism
 
         Person personRef = prof1;
-        System.out.println("Person reference calling getName(): " + personRef.getName());
+        System.out.println("\nPerson reference calling getName(): " + personRef.getName());
         personRef.displayInfo();
 
         personRef = student2;

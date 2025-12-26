@@ -12,8 +12,7 @@ public class Professor extends Person {
 
 
 
-    public Professor(int id, String name, String qualification,
-                     int yearsOfExperience, String department) {
+    public Professor(int id, String name, String qualification, int yearsOfExp, String department) {
         super(id, name);
         this.qualification = qualification;
         this.department = department;
