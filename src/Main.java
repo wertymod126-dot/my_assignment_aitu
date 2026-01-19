@@ -130,6 +130,37 @@ public class Main {
         personRef = student2;
         personRef.displayInfo();
 
+        //testing SQL DATABASE CONNECTION
+        StudentDAO dao = new StudentDAO();
+
+        // Create new student objects (using your existing Student class constructor)
+        // Ensure your Student constructor matches: (id, name, major, group, year)
+        Student s1 = new Student(232567, "Rinat Turkmengali", "Software Engineer", 2513, 1);
+        s1.setGpa(3.5); // Set a GPA for testing
+
+        Student s2 = new Student(999999, "Test User", "Cybersecurity", 2513, 2);
+        s2.setGpa(2.8);
+
+        // --- TEST ACTIONS ---
+
+        // 1. WRITE
+        System.out.println("--- INSERTING DATA ---");
+        dao.addStudent(s1);
+        dao.addStudent(s2);
+
+        // 2. READ
+        dao.getAllStudents();
+
+        // 3. UPDATE
+        System.out.println("\n--- UPDATING DATA ---");
+        dao.updateStudentGpa(232567, 4.0);
+        dao.getAllStudents(); // Check if GPA changed
+
+        // 4. DELETE
+        System.out.println("\n--- DELETING DATA ---");
+        dao.deleteStudent(999999); // Delete the test user
+        dao.getAllStudents(); // Verify deletion
+
 
 
 
