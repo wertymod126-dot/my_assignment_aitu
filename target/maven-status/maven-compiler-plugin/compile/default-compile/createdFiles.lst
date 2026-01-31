@@ -1,0 +1,11 @@
+com\aitu\university\StudentRepository.class
+com\aitu\university\Person.class
+com\aitu\university\StudentController.class
+com\aitu\university\University.class
+com\aitu\university\Displayable.class
+com\aitu\university\UniversityApplication.class
+com\aitu\university\Student.class
+com\aitu\university\StudentDAO.class
+com\aitu\university\Professor.class
+com\aitu\university\Course.class
+com\aitu\university\DatabaseConnection.class

@@ -1,12 +1,20 @@
+package com.aitu.university;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
 import java.util.List;
 
-public class Main {
+
+@SpringBootApplication
+public class UniversityApplication {
     public static void main(String[] args) {
+
+        SpringApplication.run(UniversityApplication.class, args);
+
         System.out.println("=== UNIVERSITY COURSE MANAGEMENT SYSTEM");
 
         University university = new University("Astana IT University", "Astana", 2019);
 
-        // creating objects
         Professor prof1 = new Professor(101, "Kydyrbekova Aigerim", "PhD in Computer Science", 10, "Software Engineering");
         Professor prof2 = new Professor(102, "Chigimbayeva Diana", "PhD in Mathematics", 7, "Mathematics");
 
@@ -50,7 +58,7 @@ public class Main {
         student3.enrollCourse(se201);
         student3.enrollCourse(math201);
 
-       //
+        //
         // polumorphism
         System.out.println("\n--POLYMORPHISM TEST--");
         university.displayAllPersons();
@@ -131,40 +139,34 @@ public class Main {
         personRef.displayInfo();
 
         //testing SQL DATABASE CONNECTION
-        StudentDAO dao = new StudentDAO();
-
-        // Create new student objects (using your existing Student class constructor)
-        // Ensure your Student constructor matches: (id, name, major, group, year)
-        Student s1 = new Student(232567, "Rinat Turkmengali", "Software Engineer", 2513, 1);
-        s1.setGpa(3.5); // Set a GPA for testing
-
-        Student s2 = new Student(999999, "Test User", "Cybersecurity", 2513, 2);
-        s2.setGpa(2.8);
+//        StudentDAO dao = new StudentDAO();
+//
+//        // Create new student objects (using your existing Student class constructor)
+//        // Ensure your Student constructor matches: (id, name, major, group, year)
+//        Student s1 = new Student(232567, "Rinat Turkmengali", "Software Engineer", 2513, 1);
+//        s1.setGpa(3.5); // Set a GPA for testing
+//
+//        Student s2 = new Student(999999, "Test User", "Cybersecurity", 2513, 2);
+//        s2.setGpa(2.8);
 
         // --- TEST ACTIONS ---
 
         // 1. WRITE
-        System.out.println("--- INSERTING DATA ---");
-        dao.addStudent(s1);
-        dao.addStudent(s2);
-
-        // 2. READ
-        dao.getAllStudents();
-
-        // 3. UPDATE
-        System.out.println("\n--- UPDATING DATA ---");
-        dao.updateStudentGpa(232567, 4.0);
-        dao.getAllStudents(); // Check if GPA changed
-
-        // 4. DELETE
-        System.out.println("\n--- DELETING DATA ---");
-        dao.deleteStudent(999999); // Delete the test user
-        dao.getAllStudents(); // Verify deletion
-
-
-
-
-
-
+//        System.out.println("--- INSERTING DATA ---");
+//        dao.addStudent(s1);
+//        dao.addStudent(s2);
+//
+//        // 2. READ
+//        dao.getAllStudents();
+//
+//        // 3. UPDATE
+//        System.out.println("\n--- UPDATING DATA ---");
+//        dao.updateStudentGpa(232567, 4.0);
+//        dao.getAllStudents(); // Check if GPA changed
+//
+//        // 4. DELETE
+//        System.out.println("\n--- DELETING DATA ---");
+//        dao.deleteStudent(999999); // Delete the test user
+//        dao.getAllStudents(); // Verify deletion
     }
 }
